@@ -1,0 +1,28 @@
+{
+  "name": "autosearch",
+  "version": "1.0.0",
+  "description": "an autocomplete api ",
+  "main": "router.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebAhead6/autosearch.git"
+  },
+  "author": "Bader fahoum",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebAhead6/autosearch/issues"
+  },
+  "homepage": "https://github.com/WebAhead6/autosearch#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "supertest": "^4.0.2",
+    "tape": "^5.0.1"
+  }
+}
