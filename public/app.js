@@ -30,24 +30,44 @@ function getDeleteBtn() {
 }
 
 function fetchPokemonData(pokemon) {
-  console.log(pokemon.pokeUrl);
+  console.log(pokemon);
   let url = pokemon.pokeUrl;
   //Example: https://pokeapi.co/api/v2/pokemon/1/"
   let loader = document.querySelector(".loader");
 
   loader.innerHTML = `<img src='public/loader.gif'>`;
-  fetch(url)
+  // fetch(url)
+  //   .then((response) => response.json())
+  //   .then((pokeData) => {
+  //     console.log(
+  //       "We inside fetchPokemonData annd the fetch got us:",
+  //       pokeData
+  //     );
+  //     loader.innerHTML = "";
+  //     renderPokemon(pokeData);
+  //   })
+  //   .catch((err) => {
+  //     console.log("no such pokemon!");
+  //     loader.innerHTML =
+  //       `<img src='public/nores.gif'>` +
+  //       `<div><p class="loader"> No Results found, maybe no such Pokemon exist?</p></div>`;
+  //   });
+  fetch("/pokeFetcher", {
+    method: "POST",
+    headers: {"content-type": "application/json"},
+    body: JSON.stringify(pokemon),
+  })
     .then((response) => response.json())
     .then((pokeData) => {
       console.log(
-        "We inside fetchPokemonData annd the fetch got us:",
+        "We inside fetchPokemonData with a response from the SERVER annd the fetch got us:",
         pokeData
       );
       loader.innerHTML = "";
       renderPokemon(pokeData);
     })
     .catch((err) => {
-      console.log("no such pokemon!");
+      console.log("no such pokemon!", err);
       loader.innerHTML =
         `<img src='public/nores.gif'>` +
         `<div><p class="loader"> No Results found, maybe no such Pokemon exist?</p></div>`;
@@ -55,6 +75,7 @@ function fetchPokemonData(pokemon) {
 }
 
 function renderPokemon(pokeData) {
+  console.log("We insideee renderPokemon!!!!!");
   let allPokemonContainer = document.getElementById("poke-container");
   let pokeContainer = document.createElement("div"); //div will be used to hold the data/details for indiviual pokemon.{}
   pokeContainer.classList.add("ui", "card");

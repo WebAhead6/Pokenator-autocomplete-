@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const origin = require("../data/poke.json");
+const pokeBase = require("../data/poke.json");
 const missingHandler = require("./missing");
 
 function autoHandler(request, response) {
@@ -14,9 +14,10 @@ function autoHandler(request, response) {
     if (data) {
       response.writeHead(200, {"content-type": "application/json"});
 
-      let matches = origin.filter(
-        (state) =>
-          state.name.toLowerCase().indexOf(JSON.parse(data).toLowerCase()) === 0
+      let matches = pokeBase.filter(
+        (pokemon) =>
+          pokemon.name.toLowerCase().indexOf(JSON.parse(data).toLowerCase()) ===
+          0
       );
       console.log(matches);
 
